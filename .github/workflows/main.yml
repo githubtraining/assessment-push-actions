@@ -19,7 +19,9 @@ jobs:
     steps:
       # payload.commits.0.committer.name/email/username
       - name: Tell the learner what they did
+        if: ${{ github.event.commits[0].committer.name  != 'GitHub }}
         run: |
+          echo "You committed, NOT GITHUB yay"
           echo "The committer\'s name is: ${{ github.event.commits[0].committer.name }}"
           echo "The committer\'s email is: ${{ github.event.commits[0].committer.email }}"
           echo "The committer\'s username is: ${{ github.event.commits[0].committer.username }}"
